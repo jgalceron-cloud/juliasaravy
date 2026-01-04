@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Julia Saravy - Cantora e Compositora Sertaneja">
+    <title>Julia Saravy - Cantora Sertaneja</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            background-color: #F8F9FA;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        /* Seção de Vídeos */
+        .videos-section {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: #1A1A2E;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.2);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.1);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(233, 69, 96, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            background: rgba(233, 69, 96, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        .video-info {
+            padding: 20px;
+            background: white;
+        }
+
+        .video-info h3 {
+            font-size: 1.2em;
+            color: #1A1A2E;
+            margin-bottom: 8px;
+        }
+
+        .video-info p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Contato */
+        .contact-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #F8F9FA 0%, #E8E9EA 100%);
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
+        }
+
+        .instagram-btn {
+            background: linear-gradient(135deg, #E1306C 0%, #C13584 100%);
+        }
+
+        .contact-btn img {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Sobre Mim */
+        .about-section {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-content h2 {
+            font-size: 2em;
+            color: #1A1A2E;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 1.1em;
+            color: #444;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Especialidades */
+        .specialties-section {
+            padding: 40px 20px 60px;
+            background: white;
+        }
+
+        .specialties-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .specialties-title {
+            font-size: 1.8em;
+            color: #1A1A2E;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .specialty-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #F8F9FA;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .specialty-item::before {
+            content: '✓';
+            color: #E94560;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        /* Foto */
+        .photo-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .photo-container img {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1A1A2E;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .header p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .contact-btn {
+                width: 100%;
+                max-width: 400px;
+                justify-content: center;
+            }
+
+            .about-content {
+                padding: 25px;
+            }
+
+            .specialties-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modal de Vídeo */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: transform 0.2s ease;
+            z-index: 10000;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.2);
+        }
+
+        .modal-title {
+            position: absolute;
+            bottom: -45px;
+            left: 0;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+            }
+
+            .close-modal {
+                top: -45px;
+                font-size: 35px;
+            }
+
+            .modal-title {
+                font-size: 1em;
+                bottom: -40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>JULIA SARAVY</h1>
+            <p>Cantora e Compositora Sertaneja</p>
+        </div>
+    </header>
+
+    <!-- Vídeos -->
+    <section class="videos-section" id="videos">
+        <div class="container">
+            <h2 class="section-title">🎬 Meus Vídeos</h2>
+            <div class="videos-grid">
+                <!-- Vídeo 1 -->
+                <div class="video-card fade-in" data-video-id="p3m5GQ5PdYI" data-video-title="Gravação em Studio">
+                    <div class="video-thumbnail">
+                        <img src="img/gravacao_studio.png" alt="Gravação em Studio">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Gravação em Studio</h3>
+                        <p>Clique para assistir</p>
+                    </div>
+                </div>
+
+                <!-- Vídeo 2 -->
+                <div class="video-card fade-in" data-video-id="Gjq6HDI6Y4U?start=1476" data-video-title="Semifinal - Programa ao Vivo">
+                    <div class="video-thumbnail">
+                        <img src="img/capa_programa_semifinal.jpeg" alt="Semifinal - Programa ao Vivo">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Semifinal - Programa ao Vivo</h3>
+                        <p>Clique para assistir</p>
+                    </div>
+                </div>
+
+                <!-- Vídeo 3 -->
+                <div class="video-card fade-in" data-video-id="U6Eb0nsU43M" data-video-title="Expo Genética 2025">
+                    <div class="video-thumbnail">
+                        <img src="img/expogenecia1.jpeg" alt="Expo Genética 2025">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Expo Genética 2025</h3>
+                        <p>Clique para assistir</p>
+                    </div>
+                </div>
+
+                <!-- Vídeo 4 -->
+                <div class="video-card fade-in" data-video-id="1XedAcpMm98" data-video-title="Apresentação Recanto Restaurante">
+                    <div class="video-thumbnail">
+                        <img src="img/recanto.png" alt="Apresentação Recanto Restaurante">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Apresentação Recanto Restaurante</h3>
+                        <p>Clique para assistir</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact-section" id="contato">
+        <div class="container">
+            <h2 class="section-title">📱 Entre em Contato</h2>
+            <div class="contact-buttons">
+                <a href="https://wa.me/5567992363194" target="_blank" class="contact-btn whatsapp-btn">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    (67) 99236-3194
+                </a>
+
+                <a href="https://www.instagram.com/juliasaravy?igsh=MWViNnNpejFlcXoybw==" target="_blank" class="contact-btn instagram-btn">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    @juliasaravy
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mim -->
+    <section class="about-section" id="sobre">
+        <div class="container">
+            <div class="about-content fade-in">
+                <h2>Sobre Mim</h2>
+                <p><strong>Olá!</strong></p>
+                <p>Sou Julia Saravy, tenho 18 anos e sou de Campo Grande, MS. Sou cantora e compositora de música sertaneja, com uma paixão profunda por transmitir emoção através da música.</p>
+                <p>Participei de concursos e programas de destaque, como o Talento Sertanejo e o Fesmorena, alcançando a semifinal e conquistando público e jurados com minha voz e interpretação. Também me apresentei na Expo Genética 2025 e tive participações em rádios e programas de TV, como TOPfm, Cidade97 e Povo na TV (SBTMS). Essas experiências me ajudaram a crescer como artista e a me conectar com diferentes públicos.</p>
+                <p>Meu repertório tem como foco o sertanejo, desde o sertanejo raiz até o universitário contemporâneo, sempre buscando transmitir emoção genuína e conexão com a música, tornando cada apresentação única.</p>
+                <p>Estou sempre em busca de novos desafios e oportunidades para levar minha música a mais pessoas. Seja em shows, eventos, casamentos ou apresentações especiais, meu objetivo é emocionar e criar momentos inesquecíveis através da música.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especialidades -->
+    <section class="specialties-section">
+        <div class="container">
+            <div class="specialties-content">
+                <h3 class="specialties-title">🎵 Especialidades</h3>
+                <div class="specialties-grid">
+                    <div class="specialty-item">Sertanejo Raiz e Tradicional</div>
+                    <div class="specialty-item">Sertanejo Universitário</div>
+                    <div class="specialty-item">Shows ao Vivo e Apresentações</div>
+                    <div class="specialty-item">Eventos Corporativos e Particulares</div>
+                    <div class="specialty-item">Casamentos, Festas e Celebrações</div>
+                </div>
+
+                <div class="photo-container">
+                    <img src="img/julia_foto.png" alt="Julia Saravy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Julia Saravy - Cantora e Compositora Sertaneja</p>
+            <p>Campo Grande, MS</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Vídeo -->
+    <div id="videoModal" class="video-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeVideoModal()">&times;</button>
+            <iframe id="videoPlayer" allowfullscreen allow="autoplay"></iframe>
+            <div class="modal-title" id="modalTitle"></div>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir vídeo no modal
+        function openVideoModal(videoId, title) {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            // Construir URL do embed
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            
+            player.src = embedUrl;
+            modalTitle.textContent = title;
+            modal.classList.add('active');
+            
+            // Prevenir scroll do body
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Função para fechar modal
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            
+            player.src = '';
+            modal.classList.remove('active');
+            
+            // Restaurar scroll do body
+            document.body.style.overflow = 'auto';
+        }
+
+        // Adicionar eventos de clique nos cards
+        document.querySelectorAll('.video-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const videoId = this.getAttribute('data-video-id');
+                const title = this.getAttribute('data-video-title');
+                openVideoModal(videoId, title);
+            });
+        });
+
+        // Fechar modal ao clicar fora do vídeo
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
+        // Animação ao scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observar todos os cards
+        document.querySelectorAll('.video-card, .about-content').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Lazy loading para imagens
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        }
+    </script>
+</body>
+</html>
