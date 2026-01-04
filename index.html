@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfólio de Julia Saravy - Cantora e Compositora Sertaneja">
@@ -27,11 +26,51 @@
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            position: relative;
             color: white;
             padding: 60px 20px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            min-height: 400px;
+        }
+        
+        .header-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .header-video-background iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            max-height: none;
+            transform: translate(-50%, -50%);
+            border: none;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.65);
+            z-index: 1;
+        }
+        
+        .header .container {
+            position: relative;
+            z-index: 2;
         }
 
         .header h1 {
@@ -430,6 +469,12 @@
 <body>
     <!-- Header -->
     <header class="header">
+        <div class="header-video-background">
+            <iframe src="https://www.youtube.com/embed/Gjq6HDI6Y4U?t=1489&autoplay=1&mute=1&controls=0&loop=1&playlist=Gjq6HDI6Y4U" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>
         <div class="container">
             <h1>JULIA SARAVY</h1>
             <p>Cantora e Compositora Sertaneja</p>
